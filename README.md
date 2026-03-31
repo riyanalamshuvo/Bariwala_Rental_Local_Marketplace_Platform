@@ -244,7 +244,7 @@ After running `seed.sql`:
 | Landlord     | riyanalam76@gmail.com  | 123456789 |
 | Tenant       | tenant76@gmail.com     | 123456789 |
 | Buyer/Seller | buyer76@gmail.com      | 123456789 |
-| Admin        | admin76@gmail.com      | 123456789 |
+|              |                        |           |
 
 ---
 
