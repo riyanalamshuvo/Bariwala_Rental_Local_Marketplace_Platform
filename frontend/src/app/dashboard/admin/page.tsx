@@ -63,7 +63,7 @@ function OverviewTab({ token }: { token: string }) {
   const [stats, setStats] = useState<any>(null);
 
   useEffect(() => {
-    adminApi.stats(token).then(setStats).catch(() => {});
+    adminApi.stats(token).then((data) => setStats(data)).catch(() => {});
   }, [token]);
 
   if (!stats) return <p className="text-gray-500">Loading stats...</p>;
@@ -101,7 +101,7 @@ function UsersTab({ token }: { token: string }) {
 
   const load = () => {
     setLoading(true);
-    adminApi.users(token).then(setUsers).catch(() => {}).finally(() => setLoading(false));
+    adminApi.users(token).then((data) => setUsers(data as any[])).catch(() => {}).finally(() => setLoading(false));
   };
   useEffect(load, [token]);
 
@@ -175,7 +175,7 @@ function PropertiesTab({ token }: { token: string }) {
 
   const load = () => {
     setLoading(true);
-    adminApi.properties(token).then(setProperties).catch(() => {}).finally(() => setLoading(false));
+    adminApi.properties(token).then((data) => setProperties(data as any[])).catch(() => {}).finally(() => setLoading(false));
   };
   useEffect(load, [token]);
 
@@ -227,7 +227,7 @@ function ApplicationsTab({ token }: { token: string }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    adminApi.applications(token).then(setApps).catch(() => {}).finally(() => setLoading(false));
+    adminApi.applications(token).then((data) => setApps(data as any[])).catch(() => {}).finally(() => setLoading(false));
   }, [token]);
 
   if (loading) return <p className="text-gray-500">Loading...</p>;
@@ -273,7 +273,7 @@ function MarketplaceTab({ token }: { token: string }) {
 
   const load = () => {
     setLoading(true);
-    adminApi.marketplace(token).then(setItems).catch(() => {}).finally(() => setLoading(false));
+    adminApi.marketplace(token).then((data) => setItems(data as any[])).catch(() => {}).finally(() => setLoading(false));
   };
   useEffect(load, [token]);
 
@@ -315,7 +315,7 @@ function PaymentsTab({ token }: { token: string }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    adminApi.payments(token).then(setPayments).catch(() => {}).finally(() => setLoading(false));
+    adminApi.payments(token).then((data) => setPayments(data as any[])).catch(() => {}).finally(() => setLoading(false));
   }, [token]);
 
   if (loading) return <p className="text-gray-500">Loading...</p>;
@@ -368,7 +368,7 @@ function ReportsTab({ token }: { token: string }) {
 
   const load = () => {
     setLoading(true);
-    adminApi.reports(token).then(setReports).catch(() => {}).finally(() => setLoading(false));
+    adminApi.reports(token).then((data) => setReports(data as any[])).catch(() => {}).finally(() => setLoading(false));
   };
   useEffect(load, [token]);
 
@@ -437,7 +437,7 @@ function ReviewsTab({ token }: { token: string }) {
 
   const load = () => {
     setLoading(true);
-    adminApi.reviews(token).then(setReviews).catch(() => {}).finally(() => setLoading(false));
+    adminApi.reviews(token).then((data) => setReviews(data as any[])).catch(() => {}).finally(() => setLoading(false));
   };
   useEffect(load, [token]);
 

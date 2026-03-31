@@ -73,7 +73,7 @@ function StatCard({ icon, label, value }: { icon: string; label: string; value: 
 function OverviewTab({ user, token, refreshKey }: { user: any; token: string; refreshKey: number }) {
   const [apps, setApps] = useState<any[]>([]);
   useEffect(() => {
-    propertiesApi.myApplications(token).then(setApps).catch(() => {});
+    propertiesApi.myApplications(token).then((data) => setApps(data as any)).catch(() => {});
   }, [token, refreshKey]);
 
   const approved = apps.filter(a => a.status === 'approved').length;
@@ -136,7 +136,7 @@ function MyApplicationsTab({ token, refreshKey }: { token: string; refreshKey: n
 
   useEffect(() => {
     setLoading(true);
-    propertiesApi.myApplications(token).then(setApps).catch(() => {}).finally(() => setLoading(false));
+    propertiesApi.myApplications(token).then((data) => setApps(data as any)).catch(() => {}).finally(() => setLoading(false));
   }, [token, refreshKey]);
 
   if (loading) return <p className="text-gray-500">Loading...</p>;
@@ -292,7 +292,7 @@ function PaymentsTab({ token, refreshKey }: { token: string; refreshKey: number 
                   <p className="text-sm text-gray-600">Address: {selectedProperty.property?.address}, {selectedProperty.property?.city}</p>
                 </div>
 
-              <div key={p.id} className="dashboard-card p-4">
+                <div className="dashboard-card p-4">
                   <label className="text-sm font-medium text-gray-700 block mb-1">Month / Period</label>
                   <input
                     type="text"

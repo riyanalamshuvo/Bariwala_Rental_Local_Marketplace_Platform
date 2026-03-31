@@ -80,7 +80,7 @@ function StatCard({ icon, label, value }: { icon: string; label: string; value: 
 function OverviewTab({ user, token }: { user: any; token: string }) {
   const [properties, setProperties] = useState<any[]>([]);
   useEffect(() => {
-    propertiesApi.myListings(token).then(setProperties).catch(() => {});
+    propertiesApi.myListings(token).then((data) => setProperties(data as any)).catch(() => {});
   }, [token]);
 
   return (
@@ -115,7 +115,7 @@ function MyPropertiesTab({ token, onEdit }: { token: string; onEdit: (property: 
 
   const load = useCallback(() => {
     setLoading(true);
-    propertiesApi.myListings(token).then(setProperties).catch(() => {}).finally(() => setLoading(false));
+    propertiesApi.myListings(token).then((data) => setProperties(data as any)).catch(() => {}).finally(() => setLoading(false));
   }, [token]);
 
   useEffect(() => { load(); }, [load]);
@@ -659,14 +659,14 @@ function ApplicationsTab({ token }: { token: string }) {
   const [updating, setUpdating] = useState<string | null>(null);
 
   useEffect(() => {
-    propertiesApi.myListings(token).then(setProperties).catch(() => {}).finally(() => setLoading(false));
+    propertiesApi.myListings(token).then((data) => setProperties(data as any)).catch(() => {}).finally(() => setLoading(false));
   }, [token]);
 
   useEffect(() => {
     if (selectedPropId) {
       setAppsLoading(true);
       propertiesApi.getApplications(selectedPropId, token)
-        .then(setApplications)
+        .then((data) => setApplications(data as any))
         .catch(() => setApplications([]))
         .finally(() => setAppsLoading(false));
     } else {
@@ -681,7 +681,7 @@ function ApplicationsTab({ token }: { token: string }) {
       // Refresh applications
       if (selectedPropId) {
         const updated = await propertiesApi.getApplications(selectedPropId, token);
-        setApplications(updated);
+        setApplications(updated as any);
       }
     } catch {} finally {
       setUpdating(null);
@@ -782,7 +782,7 @@ function PaymentsTab({ token }: { token: string }) {
     setLoading(true);
     try {
       const data = await paymentsApi.list(token);
-      setPayments(data);
+      setPayments(data as any);
     } catch {} finally {
       setLoading(false);
     }

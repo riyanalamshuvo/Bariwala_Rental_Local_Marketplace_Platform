@@ -81,7 +81,7 @@ function MessagesContent() {
     if (partnerId && token) {
       setLoadingThread(true);
       messagesApi.thread(partnerId, token)
-        .then(setThread)
+        .then((data) => setThread(data as any))
         .catch(() => setThread([]))
         .finally(() => setLoadingThread(false));
     }

@@ -52,7 +52,7 @@ const TabBtn = memo(function TabBtn({ label, tabKey, active, onTabChange }: { la
 function OverviewTab({ user, token }: { user: any; token: string }) {
   const [items, setItems] = useState<any[]>([]);
   useEffect(() => {
-    marketplaceApi.myItems(token).then(setItems).catch(() => {});
+    marketplaceApi.myItems(token).then((data) => setItems(data as any)).catch(() => {});
   }, [token]);
 
   return (
@@ -125,7 +125,7 @@ function MyItemsTab({ token }: { token: string }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    marketplaceApi.myItems(token).then(setItems).catch(() => {}).finally(() => setLoading(false));
+    marketplaceApi.myItems(token).then((data) => setItems(data as any)).catch(() => {}).finally(() => setLoading(false));
   }, [token]);
 
   if (loading) return <p className="text-gray-500">Loading...</p>;

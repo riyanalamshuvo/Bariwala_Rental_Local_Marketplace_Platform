@@ -24,7 +24,7 @@ export default function MarketplaceItemPage() {
   useEffect(() => {
     if (id) {
       marketplaceApi.get(id as string)
-        .then(setItem)
+        .then((data) => setItem(data as any))
         .catch(() => setItem(null))
         .finally(() => setLoading(false));
     }

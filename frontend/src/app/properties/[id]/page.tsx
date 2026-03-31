@@ -43,7 +43,7 @@ export default function PropertyDetailPage() {
         setReviews(revs);
         // Load landlord average rating
         if (prop.landlord?.id) {
-          reviewsApi.avgRating(prop.landlord.id).then(setLandlordAvg).catch(() => {});
+          reviewsApi.avgRating(prop.landlord.id).then((data) => setLandlordAvg(data as any)).catch(() => {});
         }
       }).catch(() => {
         setProperty(null);
@@ -101,7 +101,7 @@ export default function PropertyDetailPage() {
       const revs = await reviewsApi.byProperty(id as string).catch(() => []);
       setReviews(revs);
       if (property.landlord?.id) {
-        reviewsApi.avgRating(property.landlord.id).then(setLandlordAvg).catch(() => {});
+        reviewsApi.avgRating(property.landlord.id).then((data) => setLandlordAvg(data as any)).catch(() => {});
       }
     } catch (err: any) {
       setReviewFeedback(err.message);

@@ -5,9 +5,9 @@ interface FetchOptions extends RequestInit {
 }
 
 // Simple in-memory cache for GET requests (avoids redundant fetches)
-const cache = new Map<string, { data: unknown; timestamp: number }>();
+const cache = new Map<string, { data: any; timestamp: number }>();
 const CACHE_TTL = 30_000; // 30 seconds
-const pendingRequests = new Map<string, Promise<unknown>>();
+const pendingRequests = new Map<string, Promise<any>>();
 
 function getCached<T>(key: string): T | null {
   const entry = cache.get(key);
@@ -20,7 +20,7 @@ export function clearApiCache() {
   cache.clear();
 }
 
-export async function api<T = unknown>(endpoint: string, options: FetchOptions = {}): Promise<T> {
+export async function api<T = any>(endpoint: string, options: FetchOptions = {}): Promise<T> {
   const { token, headers: customHeaders, ...rest } = options;
   const method = (rest.method || 'GET').toUpperCase();
   const headers: Record<string, string> = {
